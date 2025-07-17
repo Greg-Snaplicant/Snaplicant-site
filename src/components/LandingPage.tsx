@@ -4,7 +4,7 @@ import InteractiveDemo from './InteractiveDemo';
 import NewsletterSignup from './NewsletterSignup';
 
 interface LandingPageProps {
-  onGetStarted: (type: 'candidate' | 'employer' | 'discover' | 'how-it-works' | 'for-employers' | 'pricing' | 'privacy-policy') => void;
+  onGetStarted: (type: 'candidate' | 'employer' | 'discover' | 'how-it-works' | 'for-employers' | 'pricing' | 'privacy-policy' | 'terms-of-service') => void;
   onCandidateGetStarted: () => void;
 }
 
@@ -38,30 +38,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onCandidateGetS
       icon: <Users className="w-8 h-8 text-cyan-400" />,
       title: "Employer-Friendly Format",
       description: "Streamlined video format that helps employers make faster, more informed hiring decisions."
-    }
-  ];
-
-  const testimonials = [
-    {
-      name: "Sarah Johnson",
-      role: "Marketing Director",
-      company: "TechCorp",
-      content: "This platform completely changed how we evaluate candidates. We can see personality and communication skills immediately.",
-      rating: 5
-    },
-    {
-      name: "Michael Chen",
-      role: "Software Engineer",
-      company: "Startup Inc",
-      content: "I landed my dream job within a week of creating my video introduction. The AI coaching was incredibly helpful.",
-      rating: 5
-    },
-    {
-      name: "Emma Rodriguez",
-      role: "HR Manager",
-      company: "Global Solutions",
-      content: "We've reduced our initial screening time by 70% while finding better-fit candidates. Game-changer!",
-      rating: 5
     }
   ];
 
@@ -130,6 +106,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onCandidateGetS
       <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <div className="max-w-4xl mx-auto">
+            {/* Hero Image - Add your hero image here */}
+            {/* <div className="mb-8">
+              <img 
+                src="/hero-image.jpg" 
+                alt="Snaplicant Hero" 
+                className="w-full max-w-2xl mx-auto rounded-2xl shadow-2xl"
+              />
+            </div> */}
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
               Revolutionize Your
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400"> Job Search</span>
@@ -175,6 +159,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onCandidateGetS
       {/* Features Section */}
       <section id="features" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
+          {/* Feature Hero Image - Add your feature showcase image here */}
+          {/* <div className="text-center mb-16">
+            <img 
+              src="/features-showcase.jpg" 
+              alt="Snaplicant Features" 
+              className="w-full max-w-4xl mx-auto rounded-2xl shadow-2xl"
+            />
+          </div> */}
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">Why Choose Snaplicant?</h2>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
@@ -286,31 +278,46 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onCandidateGetS
           onGetStarted={onCandidateGetStarted}
         />
       )}
-      {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">What Our Users Say</h2>
-            <p className="text-xl text-white/80">Join thousands of professionals who've transformed their job search</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-white/80 mb-4 italic">"{testimonial.content}"</p>
-                <div>
-                  <div className="font-semibold text-white">{testimonial.name}</div>
-                  <div className="text-white/60">{testimonial.role} at {testimonial.company}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
+{/* Join the Movement Section */}
+<section id="join-movement" className="py-20 px-4 sm:px-6 lg:px-8">
+  <div className="max-w-7xl mx-auto">
+    {/* Movement Image - Add your call-to-action image here */}
+    {/* <div className="text-center mb-12">
+      <img 
+        src="/join-movement.jpg" 
+        alt="Join the Movement" 
+        className="w-full max-w-3xl mx-auto rounded-2xl shadow-2xl"
+      />
+    </div> */}
+    <div className="text-center mb-16">
+      <h2 className="text-4xl font-bold text-white mb-4">Join the Movement. Be Seen. Get Hired.</h2>
+      <p className="text-xl text-white/80 max-w-4xl mx-auto">
+        Snaplicant gives job seekers the tools to stand out with professional video introductions that showcase more than just a résumé. Join others taking control of their job search and making lasting first impressions.
+      </p>
+
+      {/* ✅ Image grid section */}
+      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <img 
+          src="/community-1.png" 
+          alt="Job seeker creating profile" 
+          className="rounded-xl shadow-lg w-full h-auto"
+        />
+        <img 
+          src="/community-2.png" 
+          alt="User engaged with Snaplicant tools" 
+          className="rounded-xl shadow-lg w-full h-auto"
+        />
+        <img 
+          src="/community-3.png" 
+          alt="Job seeker standing out with Snaplicant" 
+          className="rounded-xl shadow-lg w-full h-auto"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600/20 to-purple-600/20">
@@ -378,8 +385,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onCandidateGetS
               <h4 className="font-semibold text-white mb-4">Support</h4>
               <ul className="space-y-2 text-white/60">
                 <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-                <li><button onClick={() => onGetStarted('privacy-policy')} className="hover:text-white transition-colors">Privacy Policy</button></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+                <li><button onClick={() => onGetStarted('privacy-policy')} className="hover:text-white transition-colors text-left">Privacy Policy</button></li>
+                <li><button onClick={() => onGetStarted('terms-of-service')} className="hover:text-white transition-colors text-left">Terms of Service</button></li>
               </ul>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, User, Mail, Lock, Eye, EyeOff, MapPin, Briefcase, GraduationCap, Phone } from 'lucide-react';
+import { ArrowLeft, User, Mail, Lock, Eye, EyeOff, Phone } from 'lucide-react';
 
 interface SignUpProps {
   onBack: () => void;
@@ -14,15 +14,10 @@ const SignUp: React.FC<SignUpProps> = ({ onBack, onSignUp }) => {
     lastName: '',
     email: '',
     phone: '',
+    city: '',
+    state: '',
     password: '',
     confirmPassword: '',
-    location: '',
-    currentRole: '',
-    experience: '',
-    education: '',
-    industry: '',
-    linkedinUrl: '',
-    portfolioUrl: '',
     marketingConsent: true,
     termsAccepted: false
   });
@@ -53,39 +48,6 @@ const SignUp: React.FC<SignUpProps> = ({ onBack, onSignUp }) => {
       [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
     }));
   };
-
-  const experienceLevels = [
-    'Entry Level (0-2 years)',
-    'Mid Level (3-5 years)', 
-    'Senior Level (6-10 years)',
-    'Lead/Principal (10+ years)',
-    'Executive/C-Level'
-  ];
-
-  const educationLevels = [
-    'High School',
-    'Associate Degree',
-    'Bachelor\'s Degree',
-    'Master\'s Degree',
-    'PhD',
-    'Bootcamp/Certification',
-    'Self-taught'
-  ];
-
-  const industries = [
-    'Technology',
-    'Finance',
-    'Healthcare',
-    'E-commerce',
-    'Education',
-    'Media & Entertainment',
-    'Gaming',
-    'Consulting',
-    'Startup',
-    'Non-profit',
-    'Government',
-    'Other'
-  ];
 
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
@@ -147,6 +109,37 @@ const SignUp: React.FC<SignUpProps> = ({ onBack, onSignUp }) => {
                   />
                 </div>
               </div>
+              
+              <div className="grid md:grid-cols-2 gap-4 mt-4">
+                <div>
+                  <label className="block text-white/80 text-sm font-medium mb-2">
+                    City *
+                  </label>
+                  <input
+                    type="text"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="San Francisco"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-white/80 text-sm font-medium mb-2">
+                    State *
+                  </label>
+                  <input
+                    type="text"
+                    name="state"
+                    value={formData.state}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="California"
+                    required
+                  />
+                </div>
+              </div>
             </div>
 
             {/* Contact Information */}
@@ -185,137 +178,6 @@ const SignUp: React.FC<SignUpProps> = ({ onBack, onSignUp }) => {
                       placeholder="+1 (555) 123-4567"
                     />
                   </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Professional Information */}
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-4">Professional Information</h3>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-white/80 text-sm font-medium mb-2">
-                    Current Role/Title *
-                  </label>
-                  <div className="relative">
-                    <Briefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
-                    <input
-                      type="text"
-                      name="currentRole"
-                      value={formData.currentRole}
-                      onChange={handleInputChange}
-                      className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Software Engineer"
-                      required
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-white/80 text-sm font-medium mb-2">
-                    Location *
-                  </label>
-                  <div className="relative">
-                    <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
-                    <input
-                      type="text"
-                      name="location"
-                      value={formData.location}
-                      onChange={handleInputChange}
-                      className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="San Francisco, CA"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-4 mt-4">
-                <div>
-                  <label className="block text-white/80 text-sm font-medium mb-2">
-                    Experience Level *
-                  </label>
-                  <select
-                    name="experience"
-                    value={formData.experience}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    required
-                  >
-                    <option value="">Select experience</option>
-                    {experienceLevels.map(level => (
-                      <option key={level} value={level} className="bg-gray-800">{level}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-white/80 text-sm font-medium mb-2">
-                    Education Level *
-                  </label>
-                  <div className="relative">
-                    <GraduationCap className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
-                    <select
-                      name="education"
-                      value={formData.education}
-                      onChange={handleInputChange}
-                      className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      required
-                    >
-                      <option value="">Select education</option>
-                      {educationLevels.map(level => (
-                        <option key={level} value={level} className="bg-gray-800">{level}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-white/80 text-sm font-medium mb-2">
-                    Industry *
-                  </label>
-                  <select
-                    name="industry"
-                    value={formData.industry}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    required
-                  >
-                    <option value="">Select industry</option>
-                    {industries.map(industry => (
-                      <option key={industry} value={industry} className="bg-gray-800">{industry}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            {/* Optional Links */}
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-4">Professional Links (Optional)</h3>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-white/80 text-sm font-medium mb-2">
-                    LinkedIn Profile
-                  </label>
-                  <input
-                    type="url"
-                    name="linkedinUrl"
-                    value={formData.linkedinUrl}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="https://linkedin.com/in/yourprofile"
-                  />
-                </div>
-                <div>
-                  <label className="block text-white/80 text-sm font-medium mb-2">
-                    Portfolio/Website
-                  </label>
-                  <input
-                    type="url"
-                    name="portfolioUrl"
-                    value={formData.portfolioUrl}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="https://yourportfolio.com"
-                  />
                 </div>
               </div>
             </div>
@@ -405,13 +267,13 @@ const SignUp: React.FC<SignUpProps> = ({ onBack, onSignUp }) => {
                 />
                 <label htmlFor="termsAccepted" className="text-white/80 text-sm">
                   I agree to the{' '}
-                  <a href="/terms" className="text-blue-400 hover:text-blue-300 underline">
+                  <button onClick={() => onBack()} className="text-blue-400 hover:text-blue-300 underline">
                     Terms of Service
-                  </a>{' '}
+                  </button>{' '}
                   and{' '}
-                  <a href="/privacy" className="text-blue-400 hover:text-blue-300 underline">
+                  <button onClick={() => onBack()} className="text-blue-400 hover:text-blue-300 underline">
                     Privacy Policy
-                  </a>
+                  </button>
                   . *
                 </label>
               </div>

@@ -15,6 +15,7 @@ import EmployerAIMatching from './components/EmployerAIMatching';
 import ResumeUpload from './components/ResumeUpload';
 import UserDashboard from './components/UserDashboard';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsOfService from './components/TermsOfService';
 import SignUp from './components/SignUp';
 
 function App() {
@@ -27,10 +28,12 @@ function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [currentView, setCurrentView] = useState('dashboard');
 
-  const handleGetStarted = (type: 'candidate' | 'employer' | 'discover' | 'how-it-works' | 'for-employers' | 'pricing' | 'privacy-policy' | 'signup') => {
+  const handleGetStarted = (type: 'candidate' | 'employer' | 'discover' | 'how-it-works' | 'for-employers' | 'pricing' | 'privacy-policy' | 'terms-of-service' | 'signup') => {
     setUserType(type);
     if (type === 'privacy-policy') {
       setCurrentStep('privacy-policy');
+    } else if (type === 'terms-of-service') {
+      setCurrentStep('terms-of-service');
     } else if (type === 'signup') {
       setCurrentStep('signup');
     } else if (type === 'candidate') {
@@ -132,6 +135,12 @@ function App() {
       
       {currentStep === 'privacy-policy' && (
         <PrivacyPolicy 
+          onBack={handleBackToLanding}
+        />
+      )}
+      
+      {currentStep === 'terms-of-service' && (
+        <TermsOfService 
           onBack={handleBackToLanding}
         />
       )}

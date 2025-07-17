@@ -161,13 +161,13 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({ onClose, isModal = 
       <div className="text-center">
         <p className="text-white/60 text-xs">
           By subscribing, you agree to our{' '}
-          <a href="/terms" className="text-blue-400 hover:text-blue-300 underline">
+          <span className="text-blue-400">
             Terms of Service
-          </a>{' '}
+          </span>{' '}
           and{' '}
-          <a href="/privacy" className="text-blue-400 hover:text-blue-300 underline">
+          <span className="text-blue-400">
             Privacy Policy
-          </a>
+          </span>
           . We respect your privacy and will never spam you.
         </p>
       </div>
